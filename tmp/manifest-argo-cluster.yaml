@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: sv-demo-workloads
+  namespace: argocd
+type: Opaque
+stringData:
+  config: |
+    {
+    "bearerToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IldHZTRLY0lNWHpEcmZlb3RHWVY3Rm9nVnAtSkg4TGQ3cHozTTIwTng1TGsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZW1vLXdvcmtsb2FkcyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhcmdvY2Qtcm9ib3QtdG9rZW4tcXBqOWoiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiYXJnb2NkLXJvYm90Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiMTNkNjU2YTUtZGZiYy00YjBmLTg3MTUtYWUwZWRhNWY3YzhlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlbW8td29ya2xvYWRzOmFyZ29jZC1yb2JvdCJ9.heTzBeFARYx5avFd3OdbWd_fmVfHvGa6mY_vrgEwmCkA1A8NVndNKaBy3kvicN0vGWmzKha8RfQMmEb5-o0xF1JLABPORTpK7kPjWmDtmTqFw1AUlyJlHsl384KE7pLfd88IESgLsaCAbVYdKSARoiIs1dhWSTQlzdAaU1afXf5NJnrsMJeq9Pt52S2MysKOGX6cvd37uGwYRCyvQ4arrtRDOJ3BGRTLgMCq9mQ5jbRPQQYGqfCz3XPk6QlV5Zo1ayD2Ko_tEZmBSJJG0AQgD85w0xeSQrcLHL3ZfAuaOCgzsoGBohPOlFeweCJfPnhsqwJQmxyX52atVnU9Wf1wvg",
+        "tlsClientConfig": {
+        "insecure": true
+        }
+    }
+  name: sv-demo-workloads
+  namespaces: demo-workloads
+  server: https://10.255.195.2:6443

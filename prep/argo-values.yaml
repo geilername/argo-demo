@@ -1,0 +1,96 @@
+fullnameOverride: "argocd"
+
+crds:
+  install: true
+  keep: true
+
+configs:
+  cm:
+    create: true
+    exec.enabled: true
+    resource.exclusions: |
+      - apiGroups:
+        - "velero.io"
+        kinds:
+        - Backup
+        clusters:
+        - '*'
+      - apiGroups:
+        - "*"
+        kinds:
+        - PodTemplate
+        clusters:
+        - KUBERNETESAPIADDR
+    resource.inclusions: |
+      - apiGroups:
+        - "run.tanzu.vmware.com"
+        kinds:
+        - TanzuKubernetesAddon
+        - TanzuKubernetesCluster
+        - TanzuKubernetesRelease
+        - TkgServiceConfiguration
+        clusters:
+        - KUBERNETESAPIADDR
+      - apiGroups:
+        - "cluster.x-k8s.io"
+        kinds:
+        - Cluster
+        - Machine
+        - MachineDeployment
+        - MachineHealthCheck
+        - MachineSet
+        clusters:
+        - KUBERNETESAPIADDR
+      - apiGroups:
+        - "vmoperator.vmware.com"
+        kinds: 
+        - "*"
+        clusters:
+        - KUBERNETESAPIADDR
+      - apiGroups:
+        - "controlplane.cluster.x-k8s.io"
+        - "bootstrap.cluster.x-k8s.io"
+        kinds: 
+        - KubeadmControlPlane
+        - KubeadmConfig
+        - KubeadmConfigTemplate
+        clusters:
+        - KUBERNETESAPIADDR
+      - apiGroups:
+        - "infrastructure.cluster.vmware.com"
+        kinds: 
+        - "*"
+        clusters:
+        - KUBERNETESAPIADDR
+      # - apiGroups:
+      #   - "networking.x-k8s.io"
+      #   kinds: 
+      #   - Gateway
+      #   clusters:
+      #   - KUBERNETESAPIADDR
+      - apiGroups:
+        - "rbac.authorization.k8s.io"
+        kinds: 
+        - Role
+        - RoleBinding
+        clusters:
+        - KUBERNETESAPIADDR
+
+redis-ha:
+  enabled: true
+
+controller:
+  replicas: 1
+
+server:
+  replicas: 1
+  service:
+    type: LoadBalancer
+
+repoServer:
+  replicas: 1
+  containerSecurityContext:
+    allowPrivilegeEscalation: true
+
+applicationSet:
+  replicaCount: 1

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: sv-demo-workloads
+  namespace: argocd
+type: Opaque
+stringData:
+  config: |
+    {
+    "bearerToken": "KUBERNETESTOKEN",
+        "tlsClientConfig": {
+        "insecure": true
+        }
+    }
+  name: sv-demo-workloads
+  namespaces: demo-workloads
+  server: KUBERNETESAPIADDR
